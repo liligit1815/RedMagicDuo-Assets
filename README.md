@@ -6,8 +6,8 @@
 
 1. 在下方目录选择素材，或进入 [最新素材发布](https://github.com/liligit1815/RedMagicDuo-Assets/releases/latest)。
 2. 下载带 `.zip` 后缀的素材附件。GitHub 自动生成的 Source code ZIP 是仓库源码，不能作为素材包导入。
-3. 在红魔 Duo 的“状态栏 → 图标与字体素材”选择“导入素材包”。查看名称、作者、许可和素材数量，确认后应用。
-4. 导入只替换状态栏图标素材与字体设置，保留图标显隐、位置、行数及布局。缺失图标状态保留原厂显示。
+3. 在红魔 Duo 的“状态栏 → 图标与字体素材”选择“导入素材包”。查看名称、作者、许可和素材数量，载入预览后点击“应用”。
+4. 导入仅覆盖包内涉及图标的素材映射和明确指定的字体角色，保留其他素材及图标显隐、位置、行数和布局。包内没有覆盖的图标状态保留原厂显示。
 
 | 素材 | 内容 | 许可 | 预览 |
 | --- | --- | --- | --- |
@@ -15,7 +15,7 @@
 | [Gentle Spin](https://github.com/liligit1815/RedMagicDuo-Assets/releases/download/v1.0.0/gentle-spin-1.0.0.zip) | 原创低帧率风扇动画 | MIT | [预览](previews/gentle-spin.webp) |
 | [Noto Sans](https://github.com/liligit1815/RedMagicDuo-Assets/releases/download/v1.0.0/noto-sans-1.0.0.zip) | Noto Sans 字体，适合时间、数字、拉丁文字 | SIL OFL 1.1 | [字体来源](https://github.com/google/fonts/tree/main/ofl/notosans) |
 
-Noto Sans 此文件不包含中文字符；混排中文交给系统字体回退。素材格式版本为 1，需使用支持状态栏素材功能的红魔 Duo 版本。示例包分别演示图标、动画与字体，导入任一包都会替换当前两项外观配置；请先导出自己正在使用的素材组合。
+Noto Sans 此文件不包含中文字符；混排中文交给系统字体回退。素材格式版本为 1，需使用支持状态栏素材功能的红魔 Duo 版本。三个示例包可依次载入组成一套外观；导入 Noto Sans 不会清空已选图标。已存在的同名图标会整体替换其状态与层映射，建议修改前导出当前素材组合。
 
 ## 投稿
 

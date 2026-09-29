@@ -1,0 +1,45 @@
+{
+  "format": "RedMagicDuo.AssetCatalog",
+  "version": 1,
+  "packs": [
+    {
+      "id": "mono-essentials",
+      "name": "Mono Essentials",
+      "version": "1.0.0",
+      "description": "原创单色闹钟、蓝牙、勿扰、飞行模式与 VPN 图标",
+      "author": "RedMagic Duo contributors",
+      "license": "MIT",
+      "formatVersion": 1,
+      "downloadUrl": "https://github.com/liligit1815/RedMagicDuo-Assets/releases/download/v1.0.0/mono-essentials-1.0.0.zip",
+      "sha256": "90ff71bcbe25f5c2731a3c76f16b71b82488060cd2e435da30a0df7c9750dce7",
+      "sizeBytes": 5254,
+      "previewUrl": "https://raw.githubusercontent.com/liligit1815/RedMagicDuo-Assets/main/previews/mono-essentials.png"
+    },
+    {
+      "id": "gentle-spin",
+      "name": "Gentle Spin",
+      "version": "1.0.0",
+      "description": "原创 8 fps 散热风扇动画，24 帧循环",
+      "author": "RedMagic Duo contributors",
+      "license": "MIT",
+      "formatVersion": 1,
+      "downloadUrl": "https://github.com/liligit1815/RedMagicDuo-Assets/releases/download/v1.0.0/gentle-spin-1.0.0.zip",
+      "sha256": "9b1fe10dec94724cdae21de1b4e236f96c31872e498d24dc3607ff48f98c08ec",
+      "sizeBytes": 4787,
+      "previewUrl": "https://raw.githubusercontent.com/liligit1815/RedMagicDuo-Assets/main/previews/gentle-spin.webp"
+    },
+    {
+      "id": "noto-sans",
+      "name": "Noto Sans",
+      "version": "1.0.0",
+      "description": "Noto Sans 原版可变字体，适合数字和拉丁文字；中文使用系统回退",
+      "author": "The Noto Project Authors",
+      "license": "OFL-1.1",
+      "formatVersion": 1,
+      "downloadUrl": "https://github.com/liligit1815/RedMagicDuo-Assets/releases/download/v1.0.0/noto-sans-1.0.0.zip",
+      "sha256": "1977bd72e934c840868d0907595dfbd5957e588c0d8e12d129750084a2c01153",
+      "sizeBytes": 1197767,
+      "previewUrl": "https://raw.githubusercontent.com/liligit1815/RedMagicDuo-Assets/main/previews/noto-sans.png"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+name: 素材投稿
+description: 提交可公开分发的状态栏图标、动画或字体包，审核后上架。
+title: "[素材投稿] "
+labels: []
+body:
+  - type: input
+    id: title
+    attributes:
+      label: 素材名称与版本
+      placeholder: 例如：我的单色图标 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: 作者
+    validations:
+      required: true
+  - type: textarea
+    id: package
+    attributes:
+      label: 素材包
+      description: 将应用导出的 ZIP 拖到此文本框上传，最大 20 MiB。不要上传完整配置备份。
+    validations:
+      required: true
+  - type: textarea
+    id: preview
+    attributes:
+      label: 效果预览与适用范围
+      description: 附上效果图，说明图标、状态、字体及已测试设备。
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: 来源与授权
+      description: 写明各素材来源、原作者、许可证及允许再分发的依据，保留原始许可文本。
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: 投稿确认
+      options:
+        - label: 我有权公开分发包内全部素材，已保留必要的作者与许可说明。
+          required: true
+        - label: 包内不包含账户、设备日志、完整配置备份或其他个人信息。
+          required: true
+        - label: 我理解投稿需要维护者审核，不会自动上架。
+          required: true

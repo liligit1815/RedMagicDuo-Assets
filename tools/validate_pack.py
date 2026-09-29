@@ -29,6 +29,16 @@ def strict_object(pairs):
         result[key] = value
     return result
 
+def reject_apng(data):
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return
+    offset = 8
+    while offset + 12 <= len(data):
+        length = int.from_bytes(data[offset:offset + 4], "big")
+        require(length <= len(data) - offset - 12, "incomplete PNG chunk")
+        require(data[offset + 4:offset + 8] != b"acTL", "APNG is not supported; use GIF or animated WebP")
+        offset += length + 12
+
 def references(theme, fonts):
     require(isinstance(theme, str) and len(theme) <= 65536, "invalid theme")
     require(isinstance(fonts, str) and len(fonts) <= 2048, "invalid fonts")
@@ -117,6 +127,7 @@ def validate(path):
             data = entries.pop(filename)
             require(hashlib.sha256(data).hexdigest() == sha, "SHA-256 mismatch")
             if section == "images":
+                reject_apng(data)
                 with warnings.catch_warnings():
                     warnings.simplefilter("error", Image.DecompressionBombWarning)
                     with Image.open(io.BytesIO(data)) as image:

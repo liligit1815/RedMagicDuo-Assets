@@ -1,11 +1,13 @@
 """Adversarial packages exercise the same public validator used for submissions."""
 import hashlib
+import io
 import json
 import tempfile
 import warnings
 import zipfile
 from pathlib import Path
-from validate_pack import validate
+from validate_pack import validate, reject_apng
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,6 +43,20 @@ def main():
         m["theme"] = m["theme"].replace(old, new)
         files[path] = data
     cases.append(("fake image with matching hash", altered(fake_image)))
+    def apng(m, files):
+        old = next(iter(m["images"]))
+        files.pop(m["images"].pop(old))
+        stream = io.BytesIO()
+        first = Image.new("RGBA", (16, 16), (255, 255, 255, 255))
+        second = Image.new("RGBA", (16, 16), (0, 0, 0, 255))
+        first.save(stream, format="PNG", save_all=True, append_images=[second], duration=125, loop=0)
+        data = stream.getvalue()
+        sha = hashlib.sha256(data).hexdigest()
+        path = "images/" + sha + ".png"
+        m["images"][sha] = path
+        m["theme"] = m["theme"].replace(old, sha)
+        files[path] = data
+    cases.append(("APNG unsupported by app", altered(apng)))
     cases.append(("oversized metadata", altered(lambda m, f: m["metadata"].update(name="x" * 101))))
     cases.append(("unreferenced listed image", altered(lambda m, f: m.update(theme=""))))
     with tempfile.TemporaryDirectory(prefix="redmagic-assets-test-") as folder:
@@ -65,9 +81,20 @@ def main():
             print("PASS rejects missing ZIP central directory terminator")
         else:
             raise AssertionError("truncated ZIP accepted")
+    # Even a one-frame APNG control chunk is rejected by the app's container policy.
+    import struct
+    import zlib
+    payload = b"acTL" + struct.pack(">II", 1, 0)
+    single_frame_control = b"\x89PNG\r\n\x1a\n" + struct.pack(">I", 8) + payload + struct.pack(">I", zlib.crc32(payload))
+    try:
+        reject_apng(single_frame_control)
+    except ValueError:
+        print("PASS rejects one-frame APNG control chunk")
+    else:
+        raise AssertionError("one-frame APNG accepted")
     for path in sorted((ROOT / "dist").glob("*.zip")):
         print("PASS valid", path.name, validate(path))
-    print(f"{len(cases)+4} package validation scenarios passed")
+    print(f"{len(cases)+5} package validation scenarios passed")
 
 if __name__ == "__main__":
     main()
